@@ -12,9 +12,9 @@ function extrairInfo() {
     cidades.splice(i, 1);
     i++;
   }
-  cidades = cidades.join(', ');
+  resultCidades = cidades.join(', ');
   
-  console.log(cidades);
+  console.log(resultCidades);
   
   let roteiros = body.split('#Roteiro');
   let roteirosA = [];
@@ -38,8 +38,11 @@ function extrairInfo() {
   for (let i = 0; i < locaisRoteirosA.length; i++) {
     qtdeLocais.push(locaisRoteirosA[i].split(';').length);
   }
+  for (let i = 0; i < qtdeLocais.length; i++) {
+    qtdeLocais[i] = cidades[i] + ': ' + qtdeLocais[i];
+  }
+  qtdeLocais = qtdeLocais.join('; ');
 
-  console.log(locaisRoteirosA);
   console.log(qtdeLocais);
 
   let pontosCentro = body.split('Região: Centro<br>')[1].split('<br>')[0];
@@ -49,6 +52,12 @@ function extrairInfo() {
   let pontosDowntown = body.split('Região: Downtown<br>')[1].split('<br>')[0].slice(2);
 
   console.log(pontosDowntown);
+
+  alert(resultCidades);
+  alert(resultRoteirosA);
+  alert(qtdeLocais);
+  alert(pontosCentro);
+  alert(pontosDowntown);
 }
 
 extrairInfo();
